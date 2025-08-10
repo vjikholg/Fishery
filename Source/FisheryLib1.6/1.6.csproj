@@ -3,8 +3,6 @@
 	<PropertyGroup>
 		<OutDir>..\..\1.5\Assemblies\</OutDir>
 		<Copyright>Copyright (c) 2024 Bradson</Copyright>
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<PlatformTarget>x86</PlatformTarget>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants>DEBUG;V1_5</DefineConstants>
