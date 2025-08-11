@@ -102,11 +102,7 @@ public static class TypeExtensions
 			}
 
 			string displayName;
-
-			// Generic types
-			// type.Name -> type.Name.AsReadenlySpan() seems to have fixed it. 
-			// double check later. 
-			if (type.Name.AsReadOnlySpan().Contains('`'))
+			if (type.Name.Contains('`'))
 			{
 				// Retrieve the current generic arguments for the current type (leaf or not)
 				var tokens = type.Name.Split('`');
