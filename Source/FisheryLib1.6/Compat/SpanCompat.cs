@@ -5,7 +5,6 @@
 
 using System.Runtime.CompilerServices;
 
-#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace FisheryLib;
 
 public static class SpanCompat
@@ -13,5 +12,5 @@ public static class SpanCompat
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref T DangerousGetPinnableReference<T>(this ReadOnlySpan<T> span) => ref MemoryMarshal.GetReference(span);
 
-	public static ref T DangerousGetPinnableReference<T>(this Span<T> span) => ref MemoryMarshal.GetReference(span);
+	public static ref T DangerousGetPinnableReference<T>(this Span<T> span) => ref span.GetPinnableReference();
 }

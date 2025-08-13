@@ -4,7 +4,7 @@
 		<RootNamespace>FisheryLib</RootNamespace>
 		<AssemblyName>1Fishery</AssemblyName>
 		<Authors>bradson</Authors>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net472</TargetFramework>
 		<LangVersion>preview</LangVersion>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Optimize>true</Optimize>
@@ -23,6 +23,8 @@
 		<MSBuildProjectExtensionsPath>obj\$(MSBuildProjectName)\$(Configuration)\</MSBuildProjectExtensionsPath>
 		<DefaultItemExcludes>$(DefaultItemExcludes);obj/**/*.*</DefaultItemExcludes>
 		<PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
+		<!-- DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences -->
+		<PublicizeAll>true</PublicizeAll>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Zetrith.Prepatcher" Version="1.*" />
@@ -71,8 +73,8 @@
 		<DoNotPublicize Include="0Harmony:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute" />
 		<DoNotPublicize Include="0Harmony:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute" />
 		<DoNotPublicize Include="0Harmony:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" />
-		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2.buckets" />
-		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2.entries" />
+		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2._buckets" />
+		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2._entries" />
 		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2.version" />
 		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2+Entry" />
 		<Publicize Include="mscorlib:System.Collections.Generic.List`1._items" />
@@ -84,7 +86,7 @@
 		<Publicize Include="mscorlib:System.Runtime.CompilerServices.JitHelpers.UnsafeEnumCastLong" />
 		<Publicize Include="mscorlib:System.Runtime.CompilerServices.JitHelpers.UnsafeCast" />
 		<Publicize Include="mscorlib:System.Reflection.Emit.Label.label" />
-		<Publicize Include="mscorlib:System.String.m_firstChar" />
+		<Publicize Include="mscorlib:System.String._firstChar" />
 		<None Include="..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath />
