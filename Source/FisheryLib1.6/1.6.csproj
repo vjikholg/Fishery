@@ -1,60 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework> 
+		<TargetFramework>net48</TargetFramework> 
 		<OutDir>..\..\1.6\Assemblies\</OutDir>
 		<Copyright>Copyright (c) 2024 Bradson</Copyright>
 		<RimWorldDir>G:\SteamLibrary\steamapps\common\RimWorld</RimWorldDir>
 		<UnityManaged>$(RimWorldDir)\RimWorldWin64_Data\Managed</UnityManaged>
 	</PropertyGroup>
-
-	<!-- ItemGroup>
-		<Reference Include="mscorlib">
-			<HintPath>$(UnityManaged)\mscorlib.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System">
-			<HintPath>$(UnityManaged)\System.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Core">
-			<HintPath>$(UnityManaged)\System.Core.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Data">
-			<HintPath>$(UnityManaged)\System.Data.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Drawing">
-			<HintPath>$(UnityManaged)\System.Drawing.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Numerics">
-			<HintPath>$(UnityManaged)\System.Numerics.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Runtime.Serialization">
-			<HintPath>$(UnityManaged)\System.Runtime.Serialization.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Xml">
-			<HintPath>$(UnityManaged)\System.Xml.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.Xml.Linq">
-			<HintPath>$(UnityManaged)\System.Xml.Linq.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.IO.Compression">
-			<HintPath>$(UnityManaged)\System.IO.Compression.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="System.IO.Compression.FileSystem">
-			<HintPath>$(UnityManaged)\System.IO.Compression.FileSystem.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-	</ItemGroup -->
-
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants>DEBUG;V1_6</DefineConstants>
 	</PropertyGroup>
@@ -63,12 +15,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.*" ExcludeAssets="runtime" />
+		<PackageReference Include="Krafs.Publicizer" Version ="2.3"/>
+		<PackageReference Include="Lib.Harmony" Version="2.4.*" ExcludeAssets="runtime" Aliases = "global, HarmonyAlias"/>
 	</ItemGroup>
-	
-	
-	<!-- Debug helper: print the exact refs Csc sees -->
-	<Target Name="DumpReferencePath" BeforeTargets="CoreCompile">
-		<Message Text="RefPath: %(ReferencePath.Identity)" Importance="High" />
-	</Target>
 </Project>
