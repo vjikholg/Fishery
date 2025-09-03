@@ -4,11 +4,13 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using FisheryLib.Collections;
+using System.CodeDom;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace FisheryLib;
@@ -233,19 +235,31 @@ public static class CollectionExtensions
 	{
 		if (dictionary._buckets != null)
 		{
+
 			var keyCode = HashCode.Get(ref key) & int.MaxValue;
 
-			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
-			while (bucket >= 0)
+			// if (key is not null and string)
+			// {
+			// 	var debugCode = key.GetHashCode() & int.MaxValue;
+			// 	Log.Message($"key: {key}, keyCode: {keyCode}, debugCode: {debugCode}, match?: {keyCode == debugCode}");
+			// }
+			try
 			{
-				ref var entry = ref dictionary._entries[bucket];
-				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
-					return entry.value;
+				var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
+				while (bucket >= 0)
+				{
+					ref var entry = ref dictionary._entries[bucket];
+					if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
+						return entry.value;
 
-				bucket = entry.next;
+					bucket = entry.next;
+				}
+			} catch (Exception ex)
+			{
+				// Log.Error($"{ex.Message}, at {ex.StackTrace}, with {ex.Source}");
+				// Log.Error($"Last key checked: {key}");
 			}
 		}
-
 		return default;
 	}
 
@@ -254,19 +268,31 @@ public static class CollectionExtensions
 	{
 		if (dictionary._buckets != null)
 		{
-			var keyCode = HashCode.Get(key) & int.MaxValue;
-
-			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
-			while (bucket >= 0)
+			try
 			{
-				ref var entry = ref dictionary._entries[bucket];
-				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
-					return entry.value;
+				var keyCode = HashCode.Get(key) & int.MaxValue;
+				if (key is not null and string)
+				{
+					var debugCode = key.GetHashCode() & int.MaxValue;
+					Log.Message($"key: {key}, keyCode: {keyCode}, debugCode: {debugCode}, match?: {keyCode == debugCode}");
+				}
 
-				bucket = entry.next;
+				var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
+				while (bucket >= 0)
+				{
+					ref var entry = ref dictionary._entries[bucket];
+					if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
+						return entry.value;
+
+					bucket = entry.next;
+				}
+			}
+			catch (Exception ex)
+			{
+				Log.Error($"{ex.Message} at {ex.StackTrace}, with {ex.Source}");
+				Log.Error($"Last key checked: {key}");
 			}
 		}
-
 		return default;
 	}
 
@@ -374,16 +400,16 @@ public static class CollectionExtensions
 	public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, ref TKey key)
 		where TValue : new()
 	{
-		var keyCode = HashCode.Get(ref key) & int.MaxValue;
+		var keyCode = HashCode.Get(ref key) & int.MaxValue;										// hashcode gives us bucket address
 
 	StartOfLookup:
 		if (dictionary._buckets != null)
 		{
-			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
-			while (bucket >= 0)
-			{
-				ref var entry = ref dictionary._entries[bucket];
-				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];				// specifies *which* of the linked list header we're 
+			while (bucket >= 0)                                                                 // while bucket >=0 so basically always 
+			{ 
+				ref var entry = ref dictionary._entries[bucket];								// _entries = LinkedList[] - bucket specifies which header
+				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))	// manually checks each object in the linked list - this one via ref
 					return entry.value;
 
 				bucket = entry.next;
@@ -658,21 +684,24 @@ public static class CollectionExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static T UnsafeLoad<T>(this T[] array, int index)
 	{
-		Guard.IsNotNull(array);
-		Guard.IsInRange(index, 0, array.Length);
-
-		ref T start = ref MemoryMarshal.GetReference(array);
-		return Unsafe.Add(ref start, index);
+			return (T)array.GetValue(index);
+		// Guard.IsNotNull(array);
+		// Guard.IsInRange(index, 0, array.Length);
+		// 
+		// ref T start = ref MemoryMarshal.GetReference(array);
+		// return Unsafe.Add(ref start, index);
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void UnsafeStore<T>(this T[] array, int index, T value)
 	{
-		Guard.IsNotNull(array);
-		Guard.IsInRange(index, 0, array.Length);
+		array.SetValue(value, index);
 
-		ref T start = ref MemoryMarshal.GetReference(array);
-		Unsafe.Add(ref start, index) = value;
+		// Guard.IsNotNull(array);
+		// Guard.IsInRange(index, 0, array.Length);
+		// 
+		// ref T start = ref MemoryMarshal.GetReference(array);
+		// Unsafe.Add(ref start, index) = value;
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

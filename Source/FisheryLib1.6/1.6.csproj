@@ -6,6 +6,7 @@
 		<Copyright>Copyright (c) 2024 Bradson</Copyright>
 		<RimWorldDir>G:\SteamLibrary\steamapps\common\RimWorld</RimWorldDir>
 		<UnityManaged>$(RimWorldDir)\RimWorldWin64_Data\Managed</UnityManaged>
+		<BaseOutputPath>../../1.6/Assemblies</BaseOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DefineConstants>DEBUG;V1_6</DefineConstants>
@@ -15,7 +16,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*" />
-		<PackageReference Include="Krafs.Publicizer" Version ="2.3"/>
-		<PackageReference Include="Lib.Harmony" Version="2.4.*" ExcludeAssets="runtime" Aliases = "global, HarmonyAlias"/>
+		<PackageReference Include="Lib.Harmony" Version="2.4.*" ExcludeAssets="runtime" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.*"/>
 	</ItemGroup>
 </Project>

@@ -29,7 +29,7 @@
 	<ItemGroup>
 		<PackageReference Include="Zetrith.Prepatcher" Version="1.*" />
 		<PackageReference Include="PolySharp" Version="1.*" />
-		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.*" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
 		<PackageReference Include="Krafs.Publicizer" Version="2.*" />
 		
 		<Publicize Include="Assembly-CSharp;0Harmony" IncludeVirtualMembers="false" />

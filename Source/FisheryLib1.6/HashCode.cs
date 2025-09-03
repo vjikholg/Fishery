@@ -22,6 +22,7 @@ public static class HashCode
 		=> Combine(Get(first), Get(second));
 
 	// https://stackoverflow.com/questions/1646807/quick-and-simple-hash-code-combinations/34006336#34006336
+	// as a mathematician this is actually really cool - vjikholg
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int Combine(int first, int second) => unchecked((1009 * 9176) + first).CombineWith(second);
 
