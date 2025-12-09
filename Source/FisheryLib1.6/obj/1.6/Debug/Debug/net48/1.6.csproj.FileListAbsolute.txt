@@ -1,0 +1,17 @@
+G:\projects\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.csproj.AssemblyReference.cache
+G:\projects\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.GeneratedMSBuildEditorConfig.editorconfig
+G:\projects\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.AssemblyInfoInputs.cache
+G:\projects\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.AssemblyInfo.cs
+G:\projects\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.csproj.CoreCompileInputs.cache
+G:\projects\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.sourcelink.json
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\1.6\Assemblies\1Fishery.dll
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\1.6\Assemblies\1Fishery.pdb
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.csproj.AssemblyReference.cache
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.GeneratedMSBuildEditorConfig.editorconfig
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.AssemblyInfoInputs.cache
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.AssemblyInfo.cs
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.csproj.CoreCompileInputs.cache
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.sourcelink.json
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1.6.csproj.Up2Date
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1Fishery.dll
+G:\SteamLibrary\steamapps\common\RimWorld\Mods\Fishery\Source\FisheryLib1.6\obj\1.6\Debug\Debug\net48\1Fishery.pdb

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "PoNxa0x21ZQ=",
+  "success": true,
+  "projectFilePath": "G:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Fishery\\Source\\FisheryLib1.6\\1.6.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Victor\\.nuget\\packages\\krafs.publicizer\\2.3.0\\krafs.publicizer.2.3.0.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\krafs.rimworld.ref\\1.6.4566\\krafs.rimworld.ref.1.6.4566.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\lib.harmony\\2.4.1\\lib.harmony.2.4.1.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\polysharp\\1.15.0\\polysharp.1.15.0.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Victor\\.nuget\\packages\\zetrith.prepatcher\\1.2.0\\zetrith.prepatcher.1.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}
