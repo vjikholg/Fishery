@@ -24,7 +24,7 @@ public static class SpanExtensions
 	/// <remarks>This method doesn't do any bounds checks, therefore it is responsibility of the caller to ensure the <paramref name="i"/> parameter is valid.</remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref T DangerousGetReferenceAt<T>(this Span<T> span, int i)
-		=> ref Unsafe.Add(ref span.DangerousGetPinnableReference(), (nint)(uint)i);
+		=> ref Unsafe.Add(ref span.GetPinnableReference(), (nint)(uint)i);
 
 	/// <summary>
 	/// Returns a reference to an element at a specified index within a given <see cref="Span{T}"/>, with no bounds checks.
@@ -36,7 +36,7 @@ public static class SpanExtensions
 	/// <remarks>This method doesn't do any bounds checks, therefore it is responsibility of the caller to ensure the <paramref name="i"/> parameter is valid.</remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref T DangerousGetReferenceAt<T>(this Span<T> span, nint i)
-		=> ref Unsafe.Add(ref span.DangerousGetPinnableReference(), i);
+		=> ref Unsafe.Add(ref span.GetPinnableReference(), i);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Sort<T>(this Span<T> span, IComparer<T>? comparer = null)
@@ -59,7 +59,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe ref TSource First<TSource>(this Span<TSource> span, delegate*<ref TSource, bool> predicate)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -97,7 +97,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe ref TSource First<TSource>(this Span<TSource> span, Predicate<TSource> predicate)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -140,7 +140,7 @@ public static class SpanExtensions
 	public static unsafe TSource FirstOrDefault<TSource>(this Span<TSource> span,
 		delegate*<ref TSource, bool> predicate)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -179,7 +179,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe TSource FirstOrDefault<TSource>(this Span<TSource> span, Predicate<TSource> predicate)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -220,7 +220,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe bool Any<TSource>(this Span<TSource> span, delegate*<ref TSource, bool> predicate)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference	();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -251,7 +251,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe bool Any<TSource>(this Span<TSource> span, Predicate<TSource> predicate)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -289,7 +289,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe int Count<T>(this Span<T> span, T value)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint result = 0;
 		nuint offset = 0;
@@ -321,7 +321,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe bool Contains<T>(this Span<T> span, T value)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -352,7 +352,7 @@ public static class SpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe int IndexOf<T>(this Span<T> span, T value)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -418,7 +418,7 @@ public static class SpanReferenceExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe int IndexOf<T>(this Span<T> span, ref T reference)
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var byteOffset = Unsafe.ByteOffset(ref r0, ref reference);
 
 		var elementOffset = byteOffset / (nint)(uint)sizeof(T);
@@ -452,7 +452,7 @@ public static class SpanStructExtensions
 	public static unsafe int Count<T>(this Span<T> span, in T value)
 		where T : struct
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint result = 0;
 		nuint offset = 0;
@@ -485,7 +485,7 @@ public static class SpanStructExtensions
 	public static unsafe bool Contains<T>(this Span<T> span, in T value)
 		where T : struct
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 
@@ -517,7 +517,7 @@ public static class SpanStructExtensions
 	public static unsafe int IndexOf<T>(this Span<T> span, in T value)
 		where T : struct
 	{
-		ref var r0 = ref span.DangerousGetPinnableReference();
+		ref var r0 = ref span.GetPinnableReference();
 		var length = (nuint)span.Length;
 		nuint offset = 0;
 

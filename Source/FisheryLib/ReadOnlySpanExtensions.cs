@@ -570,5 +570,10 @@ public static class ReadOnlySpanStructExtensions
 
 		return -1;
 	}
+
+	// From previous commit - Unsafe.AsRef(T) reinterprets the given read-only reference as a mutable reference.
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static ref T DangerousGetPinnableReference<T>(this ReadOnlySpan<T> span) => ref Unsafe.AsRef(span.GetPinnableReference());
+
 }
 #pragma warning restore CS8500

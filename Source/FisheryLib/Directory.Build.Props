@@ -71,8 +71,8 @@
 		<DoNotPublicize Include="0Harmony:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute" />
 		<DoNotPublicize Include="0Harmony:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute" />
 		<DoNotPublicize Include="0Harmony:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" />
-		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2.buckets" />
-		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2.entries" />
+		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2._buckets" />
+		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2._entries" />
 		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2.version" />
 		<Publicize Include="mscorlib:System.Collections.Generic.Dictionary`2+Entry" />
 		<Publicize Include="mscorlib:System.Collections.Generic.List`1._items" />
@@ -83,8 +83,11 @@
 		<Publicize Include="mscorlib:System.Runtime.CompilerServices.JitHelpers.UnsafeEnumCast" />
 		<Publicize Include="mscorlib:System.Runtime.CompilerServices.JitHelpers.UnsafeEnumCastLong" />
 		<Publicize Include="mscorlib:System.Runtime.CompilerServices.JitHelpers.UnsafeCast" />
-		<Publicize Include="mscorlib:System.Reflection.Emit.Label.label" />
+		<Publicize Include="mscorlib:System.Reflection.Emit.Label.label"  />
 		<Publicize Include="mscorlib:System.String.m_firstChar" />
+		<Publicize Include="mscorlib:System.Array.UnsafeLoad" />
+		<Publicize Include="mscorlib:System.Array.UnsafeStore" />
+		<Publicize Include="mscorlib:System.String._firstChar" />
 		<None Include="..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath />

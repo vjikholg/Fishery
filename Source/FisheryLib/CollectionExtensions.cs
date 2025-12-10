@@ -142,15 +142,15 @@ public static class CollectionExtensions
 
 	public static ref TValue GetReference<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key)
 	{
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
 			var keyCode = HashCode.Get(key) & int.MaxValue;
 			// HashCode.Get can handle null, & int.MaxValue removes any sign
 
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 					return ref entry.value;
 
@@ -163,14 +163,14 @@ public static class CollectionExtensions
 
 	public static ref TValue GetReference<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, ref TKey key)
 	{
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
 			var keyCode = HashCode.Get(ref key) & int.MaxValue;
 
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
 					return ref entry.value;
 
@@ -190,14 +190,14 @@ public static class CollectionExtensions
 	/// <returns>ref TValue or Unsafe.NullRef{TValue}</returns>
 	public static ref TValue TryGetReferenceUnsafe<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key)
 	{
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
 			var keyCode = HashCode.Get(key) & int.MaxValue;
 
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 					return ref entry.value;
 
@@ -210,14 +210,14 @@ public static class CollectionExtensions
 
 	public static ref TValue TryGetReferenceUnsafe<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, ref TKey key)
 	{
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
 			var keyCode = HashCode.Get(ref key) & int.MaxValue;
 
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
 					return ref entry.value;
 
@@ -230,14 +230,14 @@ public static class CollectionExtensions
 
 	public static TValue? TryGetValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, ref TKey key)
 	{
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
 			var keyCode = HashCode.Get(ref key) & int.MaxValue;
 
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
 					return entry.value;
 
@@ -251,14 +251,14 @@ public static class CollectionExtensions
 	[return: MaybeNull]
 	public static TValue TryGetValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key)
 	{
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
 			var keyCode = HashCode.Get(key) & int.MaxValue;
 
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 					return entry.value;
 
@@ -276,12 +276,12 @@ public static class CollectionExtensions
 		var keyCode = HashCode.Get(key) & int.MaxValue;
 
 	StartOfLookup:
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 					return ref entry.value;
 
@@ -300,12 +300,12 @@ public static class CollectionExtensions
 		var keyCode = HashCode.Get(ref key) & int.MaxValue;
 
 	StartOfLookup:
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
 					return ref entry.value;
 
@@ -324,12 +324,12 @@ public static class CollectionExtensions
 	// 	var result = true;
 	//
 	// StartOfLookup:
-	// 	if (dictionary.buckets != null)
+	// 	if (dictionary._buckets != null)
 	// 	{
-	// 		var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+	// 		var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 	// 		while (bucket >= 0)
 	// 		{
-	// 			ref var entry = ref dictionary.entries[bucket];
+	// 			ref var entry = ref dictionary._entries[bucket];
 	// 			if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 	// 			{
 	// 				reference.Value = ref entry.value;
@@ -352,12 +352,12 @@ public static class CollectionExtensions
 		var keyCode = HashCode.Get(key) & int.MaxValue;
 
 	StartOfLookup:
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 					return entry.value;
 
@@ -376,12 +376,12 @@ public static class CollectionExtensions
 		var keyCode = HashCode.Get(ref key) & int.MaxValue;
 
 	StartOfLookup:
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && Equality.EqualsByRef(ref entry.key, ref key))
 					return entry.value;
 
@@ -400,12 +400,12 @@ public static class CollectionExtensions
 		var result = true;
 
 	StartOfLookup:
-		if (dictionary.buckets != null)
+		if (dictionary._buckets != null)
 		{
-			var bucket = dictionary.buckets[keyCode % dictionary.buckets.Length];
+			var bucket = dictionary._buckets[keyCode % dictionary._buckets.Length];
 			while (bucket >= 0)
 			{
-				ref var entry = ref dictionary.entries[bucket];
+				ref var entry = ref dictionary._entries[bucket];
 				if (entry.hashCode == keyCode && entry.key.Equals<TKey>(key))
 				{
 					value = entry.value;
@@ -427,17 +427,17 @@ public static class CollectionExtensions
 		Guard.IsNotNull(dictionary);
 		Guard.IsNotNull(predicate);
 
-		var entries = dictionary.entries;
-		if (entries is null)
+		var _entries = dictionary._entries;
+		if (_entries is null)
 			return 0;
 
 		var removedCount = 0;
-		var entriesCount = entries.Length;
+		var entriesCount = _entries.Length;
 
 		for (var i = 0; i < entriesCount; i++)
 		{
-			ref var entry = ref entries[i];
-			if (entry.hashCode < 0) // valid entries are stored with & int.MaxValue on hashCode
+			ref var entry = ref _entries[i];
+			if (entry.hashCode < 0) // valid _entries are stored with & int.MaxValue on hashCode
 				continue;
 
 			// predicate might modify collection, turning a ref invalid
@@ -659,7 +659,7 @@ public static class CollectionExtensions
 	public static void UnsafeStore<T>(this T[] array, int index, T value) => Array.UnsafeStore(array, index, value);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TTo UnsafeCast<TFrom, TTo>(this TFrom obj) => Array.UnsafeMov<TFrom, TTo>(obj);
+	public static TTo UnsafeCast<TFrom, TTo>(this TFrom obj) => Unsafe.As<TFrom, TTo>(ref obj);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddRangeFast<T>(this List<T> list, T[] range)
@@ -687,7 +687,7 @@ public static class CollectionExtensions
 			return;
 
 		list.EnsureCapacity(list._size + value.Length);
-		UnsafeBlockCopy(ref value.m_firstChar,
+		UnsafeBlockCopy(ref value._firstChar,
 			ref list._items[list._size], value.Length);
 
 		list._size += value.Length;
@@ -764,8 +764,8 @@ public static class CollectionExtensions
 
 	public static unsafe uint GetSizeEstimate<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
 		=> dictionary.GetType().ComputeManagedObjectSizeEstimate()
-			+ ((uint)sizeof(Dictionary<TKey, TValue>.Entry) * (uint)(dictionary.entries?.Length ?? 0))
-			+ (sizeof(int) * (uint)(dictionary.buckets?.Length ?? 0));
+			+ ((uint)sizeof(Dictionary<TKey, TValue>.Entry) * (uint)(dictionary._entries?.Length ?? 0))
+			+ (sizeof(int) * (uint)(dictionary._buckets?.Length ?? 0));
 
 	internal static unsafe uint ComputeManagedObjectSizeEstimate(this Type type)
 	{
