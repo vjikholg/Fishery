@@ -25,7 +25,6 @@
 		<PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Zetrith.Prepatcher" Version="1.*" />
 		<PackageReference Include="PolySharp" Version="1.*" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.*" />
 		<PackageReference Include="Krafs.Publicizer" Version="2.*" />
