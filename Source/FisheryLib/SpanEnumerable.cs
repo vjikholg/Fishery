@@ -65,7 +65,7 @@ public ref struct SpanEnumerable<T>
 		// first item as the target reference, and the length as a host for the
 		// current original offset. This is not possible on eg. .NET Standard 2.0,
 		// as we lack the API to create Span<T>-s from arbitrary references.
-			=> new(ref Unsafe.Add(ref _span.DangerousGetPinnableReference(), (nint)(uint)_index), _index);
+			=> new(ref Unsafe.Add(ref _span.GetPinnableReference(), (nint)(uint)_index), _index);
 	}
 
 	/// <summary>

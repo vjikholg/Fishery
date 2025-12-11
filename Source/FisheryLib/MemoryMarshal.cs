@@ -77,7 +77,7 @@ internal static class MemoryMarshal
 	/// would have been stored. Such a reference may or may not be null. It can be used for pinning but must never be dereferenced.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref T GetReference<T>(Span<T> span) => ref span.DangerousGetPinnableReference();
+	public static ref T GetReference<T>(Span<T> span) => ref span.GetPinnableReference();
 
 	/// <summary>
 	/// Returns a reference to the 0th element of the ReadOnlySpan. If the ReadOnlySpan is empty, returns a reference to the location where the 0th element
@@ -92,7 +92,7 @@ internal static class MemoryMarshal
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static unsafe ref T GetNonNullPinnableReference<T>(Span<T> span)
-		=> ref span.Length != 0 ? ref span.DangerousGetPinnableReference() : ref Unsafe.AsRef<T>((void*)1);
+		=> ref span.Length != 0 ? ref span.GetPinnableReference() : ref Unsafe.AsRef<T>((void*)1);
 
 	/// <summary>
 	/// Returns a reference to the 0th element of the ReadOnlySpan. If the ReadOnlySpan is empty, returns a reference to fake non-null pointer. Such a reference
@@ -152,7 +152,7 @@ internal static class MemoryMarshal
 			toLength = checked((int)toLengthUInt64);
 		}
 
-		return new(Unsafe.AsPointer(ref span.DangerousGetPinnableReference()), toLength);
+		return new(Unsafe.AsPointer(ref span.GetPinnableReference()), toLength);
 	}
 
 	/// <summary>
